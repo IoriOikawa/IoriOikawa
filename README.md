@@ -25,6 +25,17 @@
   </tr>
 </table>
 
+## Projects
+
+<a href="https://github.com/IoriOikawa/TLDrRacket">
+  <picture>
+    <source media="(max-width: 600px)" srcset="assets/projects/tldrracket/banner-mobile.png">
+    <img src="assets/projects/tldrracket/banner-desktop.png"
+         alt="TLDrRacket: An RAG reading companion for Racket learners. View project."
+         width="1200">
+  </picture>
+</a>
+
 ## License
 
 The written content of this README is licensed under
