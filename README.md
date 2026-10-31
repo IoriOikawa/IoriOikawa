@@ -1,3 +1,7 @@
+<!-- time-banner:start -->
+![Daytime in New York; scenes follow New York time](asset_input/new_york_daytime.gif)
+<!-- time-banner:end -->
+
 ## Hi there 👋
 
 <!--

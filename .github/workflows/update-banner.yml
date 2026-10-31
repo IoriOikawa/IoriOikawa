@@ -1,0 +1,51 @@
+name: Update profile banner
+
+on:
+  schedule:
+    # Avoid the busy start of the hour; retry naturally on the next run.
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'README.md'
+      - 'asset_input/*.gif'
+      - 'scripts/update_banner.py'
+      - 'tests/**'
+      - '.github/workflows/update-banner.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-banner
+  cancel-in-progress: false
+
+jobs:
+  update-banner:
+    # Manual runs and pushes from other branches must not update the profile.
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out the latest default branch
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Test time selection and safe README updates
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Select the current scene
+        run: python3 scripts/update_banner.py
+
+      - name: Commit only a changed banner
+        run: |
+          if git diff --quiet -- README.md; then
+            echo "The current scene is already displayed."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- README.md
+          git commit -m "chore: update profile banner"
+          git push
