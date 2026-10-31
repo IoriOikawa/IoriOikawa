@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ComputerArchitecture-L0 — banner artwork</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: transparent; }
+    body { width: max-content; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", sans-serif; }
+    .banner {
+      position: relative;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      border: 2px solid #dfced1;
+      border-radius: 26px;
+      color: #4d3f46;
+      background: linear-gradient(105deg, #fff 0%, #fff 35%, #fcf7f7 61%, #faf3ec 100%);
+    }
+    .desktop { width: 1200px; height: 400px; grid-template-columns: 370px minmax(0, 1fr); gap: 30px; padding: 24px 48px 24px 20px; }
+    .mobile { width: 750px; height: 450px; grid-template-columns: 300px minmax(0, 1fr); gap: 14px; padding: 24px 28px 24px 20px; background: linear-gradient(105deg, #fff 0%, #fff 44%, #fcf7f7 68%, #faf3ec 100%); }
+    .banner::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 360px;
+      height: 360px;
+      right: -150px;
+      bottom: -245px;
+      transform: rotate(45deg);
+      border: 2px solid #e8d2cd;
+      background: linear-gradient(135deg, #efd8dca0, #f2ddd185 54%, #dfd6df85);
+    }
+    .logo { display: flex; justify-content: center; align-items: center; }
+    .logo img { display: block; width: 350px; height: 350px; object-fit: cover; object-position: 50% 48%; border-radius: 22px; }
+    .mobile .logo img { width: 300px; height: 300px; }
+    .copy { min-width: 0; position: relative; }
+    .eyebrow { margin: 0 0 12px; color: #8d737d; font-size: 22px; font-weight: 500; letter-spacing: 3px; }
+    h1 { margin: 0 0 16px; color: #51414f; font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: 52px; line-height: 1.18; letter-spacing: -1.2px; white-space: normal; }
+    .level { font-family: "SFMono-Regular", Menlo, Consolas, monospace; font-size: .92em; font-variant-numeric: slashed-zero; font-feature-settings: "zero" 1; letter-spacing: -1.6px; white-space: nowrap; }
+    .description { margin: 0; color: #715d68; font-size: 38px; font-weight: 500; line-height: 1.5; letter-spacing: 1px; }
+    .desktop .description { font-size: 32px; letter-spacing: 0; }
+    .footer { margin-top: 22px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .tags { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .status { display: inline-block; padding: 6px 18px; border: 1.5px solid #e6b9bf; border-radius: 999px; background: #fff0f1; color: #a95765; font-size: 24px; line-height: 1.3; white-space: nowrap; }
+    .course { border-color: #e2d3be; background: #fbf5e8; color: #876850; }
+    .action { margin: 0; color: #876850; font-size: 28px; font-weight: 600; white-space: nowrap; }
+    .action span { display: inline-block; margin-left: 16px; }
+    .mobile .eyebrow { display: none; }
+    .mobile h1 { margin-bottom: 16px; font-size: 42px; letter-spacing: -0.8px; }
+    .mobile .description { font-size: 38px; line-height: 1.6; letter-spacing: 0; }
+    .mobile .footer { flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 22px; }
+    .mobile .status { font-size: 28px; padding: 7px 12px; }
+    .mobile .action { font-size: 30px; }
+    .banner[hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <section class="banner desktop" id="desktop" aria-label="ComputerArchitecture-L0 desktop banner: A self-study library for computer architecture.">
+    <div class="logo"><img src="../../../asset_input/computer_architecture_l0_portrait.png" alt="ComputerArchitecture-L0"></div>
+    <div class="copy">
+      <p class="eyebrow">TEACHING MATERIAL</p>
+      <h1>Computer<wbr>Architecture<span class="level">-L0</span></h1>
+      <p class="description">A self-study library for computer architecture.</p>
+      <div class="footer"><div class="tags"><span class="status">Developing♡</span><span class="status course">CSCI260</span></div><p class="action">View project<span>→</span></p></div>
+    </div>
+  </section>
+  <section class="banner mobile" id="mobile" aria-label="ComputerArchitecture-L0 mobile banner: A self-study library for computer architecture.">
+    <div class="logo"><img src="../../../asset_input/computer_architecture_l0_portrait.png" alt="ComputerArchitecture-L0"></div>
+    <div class="copy">
+      <p class="eyebrow">TEACHING MATERIAL</p>
+      <h1>Computer<wbr>Architecture<span class="level">-L0</span></h1>
+      <p class="description">A self-study library for computer architecture.</p>
+      <div class="footer"><div class="tags"><span class="status">Developing♡</span><span class="status course">CSCI260</span></div><p class="action">View project<span>→</span></p></div>
+    </div>
+  </section>
+  <script>
+    const selected = new URLSearchParams(location.search).get('layout');
+    if (selected === 'desktop' || selected === 'mobile') {
+      document.querySelectorAll('.banner').forEach(banner => { banner.hidden = banner.id !== selected; });
+    }
+  </script>
+</body>
+</html>

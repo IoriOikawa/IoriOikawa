@@ -36,6 +36,15 @@
   </picture>
 </a>
 
+<a href="https://github.com/IoriOikawa/ComputerArchitecture-L0">
+  <picture>
+    <source media="(max-width: 600px)" srcset="assets/projects/computer-architecture-l0/banner-mobile.png">
+    <img src="assets/projects/computer-architecture-l0/banner-desktop.png"
+         alt="ComputerArchitecture-L0: A self-study library for computer architecture. Developing♡. CSCI260. View project."
+         width="1200">
+  </picture>
+</a>
+
 ## License
 
 The written content of this README is licensed under
