@@ -1,10 +1,12 @@
 """Integration checks for the actual command used by GitHub Actions."""
 
 from pathlib import Path
+from html.parser import HTMLParser
 import subprocess
 import sys
 import tempfile
 import unittest
+from urllib.parse import parse_qs, urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,6 +16,19 @@ END = "<!-- time-banner:end -->"
 PREFIX = "# A personal profile\n\n"
 SUFFIX = "\n\n## License\nOriginal art © Iori Oikawa.\n"
 ORIGINAL = PREFIX + START + "\nOld banner\n" + END + SUFFIX
+
+
+class TypingSources(HTMLParser):
+    def __init__(self, content):
+        super().__init__()
+        self.sources = []
+        self.feed(content)
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        url = attrs.get("srcset") if tag == "source" else attrs.get("src")
+        if url and urlsplit(url).netloc == "readme-typing-svg.demolab.com":
+            self.sources.append((attrs.get("media", "fallback"), parse_qs(urlsplit(url).query)))
 
 
 class BannerCommandTests(unittest.TestCase):
@@ -78,6 +93,57 @@ class BannerCommandTests(unittest.TestCase):
 
     def test_accepts_explicit_non_utc_offset(self):
         self.assert_scene("2026-07-15T12:00:00-04:00", "new_york_daytime")
+
+    def test_greeting_matches_the_banner_at_each_time_boundary(self):
+        for timestamp, asset, welcome in [
+            ("2026-07-15T05:59:59-04:00", "los_angeles_midnight", "Hello, night owl!"),
+            ("2026-07-15T06:00:00-04:00", "goldsmiths_morning", "Good morning, welcome!"),
+            ("2026-07-15T11:59:59-04:00", "goldsmiths_morning", "Good morning, welcome!"),
+            ("2026-07-15T12:00:00-04:00", "new_york_daytime", "Good afternoon, welcome!"),
+            ("2026-07-15T16:59:59-04:00", "new_york_daytime", "Good afternoon, welcome!"),
+            ("2026-07-15T17:00:00-04:00", "cambridge_sunset", "Good evening, welcome!"),
+            ("2026-07-15T20:59:59-04:00", "cambridge_sunset", "Good evening, welcome!"),
+            ("2026-07-15T21:00:00-04:00", "los_angeles_midnight", "Hello, night owl!"),
+        ]:
+            with self.subTest(timestamp=timestamp):
+                self.assert_scene(timestamp, asset)
+                sources = TypingSources(self.readme.read_text(encoding="utf-8")).sources
+                self.assertEqual(len(sources), 4)
+                for _, query in sources:
+                    self.assertEqual(query["lines"][0].split(";")[0], welcome)
+
+    def test_typing_preserves_the_exact_sentences_and_groups_them_together(self):
+        self.assert_scene("2026-07-15T12:00:00-04:00", "new_york_daytime")
+        content = self.readme.read_text(encoding="utf-8")
+        sources = TypingSources(content).sources
+        self.assertEqual(len(sources), 4)
+        second = "As a hacker, a professor, a musician, a kigu..."
+        third = "Is there anything I can do to make you code better?"
+        for media, query in sources:
+            with self.subTest(media=media):
+                lines = query["lines"][0].split(";")
+                if "max-width" in media:
+                    self.assertEqual(" ".join(lines[1:3]), second)
+                    self.assertEqual(" ".join(lines[3:5]), third)
+                else:
+                    self.assertEqual(lines[1:], [second, third])
+                self.assertEqual(query["groups"], [str(len(lines))])
+                self.assertEqual(query["multiline"], ["true"])
+                self.assertEqual(query["repeat"], ["true"])
+        self.assertLess(content.index(".gif)"), content.index("<picture>"))
+        self.assertIn(second, content)
+        self.assertIn(third, content)
+
+    def test_typing_has_mobile_and_dark_theme_sources(self):
+        self.assert_scene("2026-07-15T12:00:00-04:00", "new_york_daytime")
+        sources = TypingSources(self.readme.read_text(encoding="utf-8")).sources
+        self.assertEqual([media for media, _ in sources], [
+            "(max-width: 600px) and (prefers-color-scheme: dark)",
+            "(max-width: 600px)",
+            "(prefers-color-scheme: dark)",
+            "fallback",
+        ])
+        self.assertNotEqual(sources[0][1]["color"], sources[1][1]["color"])
 
     def test_unchanged_scene_does_not_rewrite_file(self):
         self.assert_scene("2026-07-15T12:00:00-04:00", "new_york_daytime")

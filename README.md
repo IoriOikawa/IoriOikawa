@@ -1,5 +1,14 @@
 <!-- time-banner:start -->
-![Daytime in New York; scenes follow New York time](asset_input/new_york_daytime.gif)
+![Sunset in Cambridge, Massachusetts; scenes follow New York time](asset_input/cambridge_sunset.gif)
+
+<p align="center">
+  <picture>
+    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com/?font=Fira+Code&amp;size=18&amp;duration=1800&amp;pause=4000&amp;color=A9D5E2&amp;background=00000000&amp;center=true&amp;vCenter=true&amp;multiline=true&amp;repeat=true&amp;groups=5&amp;width=420&amp;height=140&amp;lines=Good+evening%2C+welcome%21%3BAs+a+hacker%2C+a+professor%2C%3Ba+musician%2C+a+kigu...%3BIs+there+anything+I+can+do%3Bto+make+you+code+better%3F">
+    <source media="(max-width: 600px)" srcset="https://readme-typing-svg.demolab.com/?font=Fira+Code&amp;size=18&amp;duration=1800&amp;pause=4000&amp;color=476D82&amp;background=00000000&amp;center=true&amp;vCenter=true&amp;multiline=true&amp;repeat=true&amp;groups=5&amp;width=420&amp;height=140&amp;lines=Good+evening%2C+welcome%21%3BAs+a+hacker%2C+a+professor%2C%3Ba+musician%2C+a+kigu...%3BIs+there+anything+I+can+do%3Bto+make+you+code+better%3F">
+    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com/?font=Fira+Code&amp;size=22&amp;duration=2800&amp;pause=4000&amp;color=A9D5E2&amp;background=00000000&amp;center=true&amp;vCenter=true&amp;multiline=true&amp;repeat=true&amp;groups=3&amp;width=900&amp;height=110&amp;lines=Good+evening%2C+welcome%21%3BAs+a+hacker%2C+a+professor%2C+a+musician%2C+a+kigu...%3BIs+there+anything+I+can+do+to+make+you+code+better%3F">
+    <img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&amp;size=22&amp;duration=2800&amp;pause=4000&amp;color=476D82&amp;background=00000000&amp;center=true&amp;vCenter=true&amp;multiline=true&amp;repeat=true&amp;groups=3&amp;width=900&amp;height=110&amp;lines=Good+evening%2C+welcome%21%3BAs+a+hacker%2C+a+professor%2C+a+musician%2C+a+kigu...%3BIs+there+anything+I+can+do+to+make+you+code+better%3F" alt="Good evening, welcome! As a hacker, a professor, a musician, a kigu... Is there anything I can do to make you code better?" width="900">
+  </picture>
+</p>
 <!-- time-banner:end -->
 
 <table>

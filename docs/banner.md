@@ -13,6 +13,37 @@ README 顶部直接显示 `asset_input` 中的一张原始 GIF。所有访客看
 城市是四个时段对应的风景，切换统一看纽约时间。时段固定，不计算季节性日出日落。
 图片原尺寸均为 1200 × 400，保留原有动画和比例。
 
+## 打字问候
+
+时间横幅下方使用 [readme-typing-svg](https://github.com/DenverCoder1/readme-typing-svg)
+显示三句话。横幅图片和问候语共用一次纽约时间判断，并更新同一个标记块，
+因此不会分别按不同时间计算。
+
+| 时段 | 第一句 |
+| --- | --- |
+| 清晨 | `Good morning, welcome!` |
+| 白天 | `Good afternoon, welcome!` |
+| 黄昏 | `Good evening, welcome!` |
+| 深夜 | `Hello, night owl!` |
+
+第二、三句保持原文：
+
+> As a hacker, a professor, a musician, a kigu...
+>
+> Is there anything I can do to make you code better?
+
+三句依次打出，前面的文字保留，全部显示后停留约四秒，再一起清空并循环。
+电脑上是三行；手机上将第二、三句各分成两行，完整保留原文，防止字体过小。
+浅色和深色模式使用不同文字颜色，SVG 背景透明。
+
+README 引用公共服务生成的 SVG；服务不可用时可能显示图片的替代文字。
+现有 GitHub Actions 只生成图片地址，不需要安装额外软件或请求公共服务。
+动画会在浏览器内循环，问候时段随原有定时任务更新。
+
+本次本地动画预览位于 `preview/typing-greeting/index.html`，其中四张 SVG 是公共服务
+的实际响应，已缓存在同目录，方便离线查看。该预览固定为生成时的时段；
+之后修改 README 或切换时段，不会自动重建这份预览缓存。
+
 ## 在 GitHub 上启用
 
 1. 将 README、四张 GIF、`scripts`、`tests` 和 `.github/workflows/update-banner.yml`

@@ -32,10 +32,10 @@ jobs:
         with:
           ref: ${{ github.event.repository.default_branch }}
 
-      - name: Test time selection and safe README updates
+      - name: Test synchronized banner and greeting updates
         run: python3 -m unittest discover -s tests -v
 
-      - name: Select the current scene
+      - name: Select the current scene and greeting
         run: python3 scripts/update_banner.py
 
       - name: Commit only a changed banner
