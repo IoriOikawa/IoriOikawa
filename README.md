@@ -9,7 +9,7 @@
 <table>
   <tr>
     <td width="23%" align="center" valign="middle">
-      <img src="asset_input/omote_halloween.png" alt="Omote in her Halloween outfit" width="180">
+      <img src="asset_input/omote_halloween-transparent.png" alt="Omote in her Halloween outfit" width="180">
     </td>
     <td width="54%" align="center" valign="middle">
       <p><strong>Hi there 👋</strong></p>
@@ -18,7 +18,7 @@
       <!-- Add the full profile introduction here. -->
     </td>
     <td width="23%" align="center" valign="middle">
-      <img src="asset_input/ura_halloween.png" alt="Ura in her Halloween outfit" width="180">
+      <img src="asset_input/ura_halloween-transparent.png" alt="Ura in her Halloween outfit" width="180">
     </td>
   </tr>
 </table>
