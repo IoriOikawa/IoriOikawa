@@ -2,23 +2,26 @@
 ![Daytime in New York; scenes follow New York time](asset_input/new_york_daytime.gif)
 <!-- time-banner:end -->
 
-## Hi there 👋
+<p align="center">
+  <img src="asset_input/title.PNG" alt="Iori PaperNeko Oikawa" width="360">
+</p>
 
-<!--
-**IoriOikawa/IoriOikawa** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
-
+<table>
+  <tr>
+    <td width="23%" align="center" valign="middle">
+      <img src="asset_input/omote_halloween.png" alt="Omote in her Halloween outfit" width="180">
+    </td>
+    <td width="54%" align="center" valign="middle">
+      <p><strong>Hi there 👋</strong></p>
+      <p>I’m Iori Oikawa — PaperNeko.</p>
+      <p>Welcome to my little corner of GitHub.</p>
+      <!-- Add the full profile introduction here. -->
+    </td>
+    <td width="23%" align="center" valign="middle">
+      <img src="asset_input/ura_halloween.png" alt="Ura in her Halloween outfit" width="180">
+    </td>
+  </tr>
+</table>
 
 ## License
 
