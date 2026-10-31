@@ -2,23 +2,16 @@
 ![Daytime in New York; scenes follow New York time](asset_input/new_york_daytime.gif)
 <!-- time-banner:end -->
 
-<p align="center">
-  <img src="asset_input/title.PNG" alt="Iori PaperNeko Oikawa" width="360">
-</p>
-
 <table>
   <tr>
-    <td width="23%" align="center" valign="middle">
-      <img src="asset_input/omote_halloween-transparent.png" alt="Omote in her Halloween outfit" width="180">
+    <td width="28%" align="center" valign="middle">
+      <img src="asset_input/omote_halloween-transparent.png" alt="Omote in her Halloween outfit" width="220">
     </td>
-    <td width="54%" align="center" valign="middle">
-      <p><strong>Hi there 👋</strong></p>
-      <p>I’m Iori Oikawa — PaperNeko.</p>
-      <p>Welcome to my little corner of GitHub.</p>
-      <!-- Add the full profile introduction here. -->
+    <td width="44%" align="center" valign="middle">
+      <img src="asset_input/title-transparent.png" alt="Iori PaperNeko Oikawa" width="300">
     </td>
-    <td width="23%" align="center" valign="middle">
-      <img src="asset_input/ura_halloween-transparent.png" alt="Ura in her Halloween outfit" width="180">
+    <td width="28%" align="center" valign="middle">
+      <img src="asset_input/ura_halloween-transparent.png" alt="Ura in her Halloween outfit" width="220">
     </td>
   </tr>
 </table>
