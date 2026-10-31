@@ -21,5 +21,5 @@
 The written content of this README is licensed under
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
-Original illustrations, character designs, avatars,
+Original illustrations of paperneko-omote is © Iris Amamiya; paperneko-ura's character designs, avatars,
 and logos are © Iori Oikawa. All rights reserved.
