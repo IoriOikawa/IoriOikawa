@@ -14,3 +14,12 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+
+## License
+
+The written content of this README is licensed under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+Original illustrations, character designs, avatars,
+and logos are © Iori Oikawa. All rights reserved.
