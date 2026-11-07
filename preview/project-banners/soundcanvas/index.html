@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SoundCanvas · 项目横幅样板</title>
+  <style>
+    :root { color-scheme: light dark; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; color: light-dark(#302937, #e9e1ec); background: light-dark(#faf8fb, #17131b); }
+    * { box-sizing: border-box; }
+    body { max-width: 1050px; margin: 0 auto; padding: 44px 24px; }
+    header { margin-bottom: 26px; }
+    h1 { font-size: 26px; font-weight: 600; margin: 0 0 8px; }
+    header p, .selection { color: light-dark(#716677, #b9aebe); font-size: 14px; line-height: 1.6; margin: 0; }
+    .project-link { display: block; border-radius: 24px; }
+    .project-link:focus-visible { outline: 3px solid light-dark(#526c9c, #b1c4eb); outline-offset: 5px; }
+    .project-link img { display: block; width: 100%; max-width: 100%; height: auto; }
+    .selection { margin-top: 14px; }
+    details { margin-top: 32px; font-size: 14px; line-height: 1.8; }
+    summary { cursor: pointer; }
+    .originals { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 12px; }
+    a { color: light-dark(#4d6089, #afc3ec); }
+    @media (max-width: 600px) { body { padding: 28px 16px; } h1 { font-size: 23px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SoundCanvas</h1>
+    <p>项目横幅 · 本地样板</p>
+  </header>
+  <main>
+    <a class="project-link" href="https://github.com/IoriOikawa/SoundCanvas" target="_blank" rel="noopener noreferrer" aria-label="Open SoundCanvas: Turn music into a world you can enter.">
+      <picture>
+        <source media="(max-width: 600px)" srcset="../../../assets/projects/soundcanvas/banner-mobile.png">
+        <img src="../../../assets/projects/soundcanvas/banner-desktop.png" alt="SoundCanvas: Turn music into a world you can enter. View project." width="1200">
+      </picture>
+    </a>
+    <p class="selection" id="selection" aria-live="polite"></p>
+    <details>
+      <summary>查看两张原图</summary>
+      <div class="originals">
+        <a href="../../../assets/projects/soundcanvas/banner-desktop.png">电脑横版 · 1200 × 400</a>
+        <a href="../../../assets/projects/soundcanvas/banner-mobile.png">手机紧凑版 · 750 × 450</a>
+      </div>
+    </details>
+  </main>
+  <script>
+    const query = matchMedia('(max-width: 600px)');
+    const selection = document.getElementById('selection');
+    function updateSelection() {
+      selection.textContent = query.matches ? '当前显示：手机紧凑版' : '当前显示：电脑横版';
+    }
+    query.addEventListener('change', updateSelection);
+    updateSelection();
+  </script>
+</body>
+</html>

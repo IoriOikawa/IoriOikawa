@@ -46,9 +46,12 @@
 </a>
 
 <a href="https://github.com/IoriOikawa/SoundCanvas">
-  <img src="assets/projects/soundcanvas/banner-desktop.png"
-       alt="SoundCanvas: Turn music into a world you can enter. WebGL, Audio Reactive, p5.js. View project."
-       width="1200">
+  <picture>
+    <source media="(max-width: 600px)" srcset="assets/projects/soundcanvas/banner-mobile.png">
+    <img src="assets/projects/soundcanvas/banner-desktop.png"
+         alt="SoundCanvas: Turn music into a world you can enter. WebGL, Audio Reactive, p5.js. View project."
+         width="1200">
+  </picture>
 </a>
 
 ## License
