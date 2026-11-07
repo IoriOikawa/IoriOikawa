@@ -45,6 +45,12 @@
   </picture>
 </a>
 
+<a href="https://github.com/IoriOikawa/SoundCanvas">
+  <img src="assets/projects/soundcanvas/banner-desktop.png"
+       alt="SoundCanvas: Turn music into a world you can enter. WebGL, Audio Reactive, p5.js. View project."
+       width="1200">
+</a>
+
 ## License
 
 The written content of this README is licensed under
