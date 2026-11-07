@@ -54,6 +54,15 @@
   </picture>
 </a>
 
+<a href="https://github.com/IoriOikawa/nekoinfo">
+  <picture>
+    <source media="(max-width: 600px)" srcset="assets/projects/nekoinfo/banner-mobile.png">
+    <img src="assets/projects/nekoinfo/banner-desktop.png"
+         alt="nekoinfo: A native Linux monitor, with a little cat. Linux, GTK4, System Monitor. View project."
+         width="1200">
+  </picture>
+</a>
+
 ## License
 
 The written content of this README is licensed under
