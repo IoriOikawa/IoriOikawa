@@ -70,3 +70,23 @@ The written content of this README is licensed under
 
 Original illustrations of paperneko-omote is © Iris Amamiya; paperneko-ura's character designs, avatars,
 and logos are © Iori Oikawa. All rights reserved.
+
+## A little comic
+
+<p align="center">
+  <a href="assets/comics/gothic-questions.png">
+    <img src="assets/comics/gothic-questions.png"
+         alt="A four-panel comic: questions about being a tree, the wind and a cloud, interrupted by a catgirl."
+         width="1200">
+  </a>
+</p>
+
+<p align="center">
+  <a href="assets/comics/starry-sunset-run.png">
+    <img src="assets/comics/starry-sunset-run.png"
+         alt="The two characters run together beneath a sunset and starry sky, wondering whether love makes them a star."
+         width="1200">
+  </a>
+</p>
+
+Creative inspiration: **[Jordan Jenkins](https://x.com/jordan1oi)** · [Original post](https://x.com/jordan1oi/status/2112484948854575410?s=12).
