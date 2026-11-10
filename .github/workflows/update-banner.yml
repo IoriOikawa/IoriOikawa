@@ -3,7 +3,7 @@ name: Update profile banner
 on:
   schedule:
     # Start three minutes after each New York scene boundary, with two retries.
-    - cron: '3,13,23 6,12,17,21 * * *'
+    - cron: '3,13,23 5,9,17,21 * * *'
       timezone: 'America/New_York'
     # Recover a missed boundary update without checking every half hour all day.
     - cron: '37 * * * *'

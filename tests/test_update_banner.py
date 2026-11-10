@@ -1,7 +1,10 @@
 """Integration checks for the actual command used by GitHub Actions."""
 
 from pathlib import Path
+from datetime import datetime, timedelta
 from html.parser import HTMLParser
+import re
+import runpy
 import subprocess
 import sys
 import tempfile
@@ -56,10 +59,10 @@ class BannerCommandTests(unittest.TestCase):
 
     def test_exact_boundaries_in_winter(self):
         for timestamp, asset in [
-            ("2026-01-15T10:59:59Z", "los_angeles_midnight"),
-            ("2026-01-15T11:00:00Z", "goldsmiths_morning"),
-            ("2026-01-15T16:59:59Z", "goldsmiths_morning"),
-            ("2026-01-15T17:00:00Z", "new_york_daytime"),
+            ("2026-01-15T09:59:59Z", "los_angeles_midnight"),
+            ("2026-01-15T10:00:00Z", "goldsmiths_morning"),
+            ("2026-01-15T13:59:59Z", "goldsmiths_morning"),
+            ("2026-01-15T14:00:00Z", "new_york_daytime"),
             ("2026-01-15T21:59:59Z", "new_york_daytime"),
             ("2026-01-15T22:00:00Z", "cambridge_sunset"),
             ("2026-01-16T01:59:59Z", "cambridge_sunset"),
@@ -71,8 +74,10 @@ class BannerCommandTests(unittest.TestCase):
 
     def test_summer_uses_daylight_saving_offset(self):
         for timestamp, asset in [
-            ("2026-07-15T10:00:00Z", "goldsmiths_morning"),
-            ("2026-07-15T16:00:00Z", "new_york_daytime"),
+            ("2026-07-15T08:59:59Z", "los_angeles_midnight"),
+            ("2026-07-15T09:00:00Z", "goldsmiths_morning"),
+            ("2026-07-15T12:59:59Z", "goldsmiths_morning"),
+            ("2026-07-15T13:00:00Z", "new_york_daytime"),
             ("2026-07-15T21:00:00Z", "cambridge_sunset"),
             ("2026-07-16T01:00:00Z", "los_angeles_midnight"),
         ]:
@@ -83,23 +88,25 @@ class BannerCommandTests(unittest.TestCase):
         for timestamp, asset in [
             ("2026-03-08T06:59:59Z", "los_angeles_midnight"),
             ("2026-03-08T07:00:00Z", "los_angeles_midnight"),
-            ("2026-03-08T10:00:00Z", "goldsmiths_morning"),
+            ("2026-03-08T08:59:59Z", "los_angeles_midnight"),
+            ("2026-03-08T09:00:00Z", "goldsmiths_morning"),
             ("2026-11-01T05:30:00Z", "los_angeles_midnight"),
             ("2026-11-01T06:30:00Z", "los_angeles_midnight"),
-            ("2026-11-01T11:00:00Z", "goldsmiths_morning"),
+            ("2026-11-01T09:59:59Z", "los_angeles_midnight"),
+            ("2026-11-01T10:00:00Z", "goldsmiths_morning"),
         ]:
             with self.subTest(timestamp=timestamp):
                 self.assert_scene(timestamp, asset)
 
     def test_accepts_explicit_non_utc_offset(self):
-        self.assert_scene("2026-07-15T12:00:00-04:00", "new_york_daytime")
+        self.assert_scene("2026-07-15T09:00:00-04:00", "new_york_daytime")
 
     def test_greeting_matches_the_banner_at_each_time_boundary(self):
         for timestamp, asset, welcome in [
-            ("2026-07-15T05:59:59-04:00", "los_angeles_midnight", "Hello, night owl!"),
-            ("2026-07-15T06:00:00-04:00", "goldsmiths_morning", "Good morning, welcome!"),
-            ("2026-07-15T11:59:59-04:00", "goldsmiths_morning", "Good morning, welcome!"),
-            ("2026-07-15T12:00:00-04:00", "new_york_daytime", "Good afternoon, welcome!"),
+            ("2026-07-15T04:59:59-04:00", "los_angeles_midnight", "Hello, night owl!"),
+            ("2026-07-15T05:00:00-04:00", "goldsmiths_morning", "Good morning, welcome!"),
+            ("2026-07-15T08:59:59-04:00", "goldsmiths_morning", "Good morning, welcome!"),
+            ("2026-07-15T09:00:00-04:00", "new_york_daytime", "Good afternoon, welcome!"),
             ("2026-07-15T16:59:59-04:00", "new_york_daytime", "Good afternoon, welcome!"),
             ("2026-07-15T17:00:00-04:00", "cambridge_sunset", "Good evening, welcome!"),
             ("2026-07-15T20:59:59-04:00", "cambridge_sunset", "Good evening, welcome!"),
@@ -111,6 +118,40 @@ class BannerCommandTests(unittest.TestCase):
                 self.assertEqual(len(sources), 4)
                 for _, query in sources:
                     self.assertEqual(query["lines"][0].split(";")[0], welcome)
+
+    def test_workflow_checks_soon_after_each_actual_scene_change(self):
+        workflow = (ROOT / ".github/workflows/update-banner.yml").read_text()
+        schedules = re.findall(
+            r"^\s*- cron: ['\"]([^'\"]+)['\"]\s*\n"
+            r"\s+timezone: ['\"]([^'\"]+)['\"]",
+            workflow, re.MULTILINE,
+        )
+        self.assertTrue(schedules, "Expected timezone-aware banner schedules")
+        module = runpy.run_path(str(SCRIPT))
+        new_york, banner_at = module["NEW_YORK"], module["banner_at"]
+        for cron, zone in schedules:
+            self.assertEqual(zone, new_york.key)
+            self.assertEqual(len(cron.split()), 5)
+
+        def matches(cron, instant):
+            # The workflow uses comma-separated values and wildcards only.
+            values = (instant.minute, instant.hour, instant.day, instant.month,
+                      (instant.weekday() + 1) % 7)
+            return all(field == "*" or value in map(int, field.split(","))
+                       for value, field in zip(values, cron.split()))
+
+        for month, day in [(1, 15), (7, 15), (3, 8), (11, 1)]:
+            for hour in range(24):
+                boundary = datetime(2026, month, day, hour, tzinfo=new_york)
+                before = boundary - timedelta(seconds=1)
+                if banner_at(before) == banner_at(boundary):
+                    continue
+                with self.subTest(boundary=boundary.isoformat()):
+                    self.assertTrue(
+                        any(matches(cron, boundary + timedelta(minutes=delay))
+                            for cron, _ in schedules for delay in range(1, 6)),
+                        "No scheduled check within five minutes after this scene changes",
+                    )
 
     def test_typing_preserves_the_exact_sentences_and_groups_them_together(self):
         self.assert_scene("2026-07-15T12:00:00-04:00", "new_york_daytime")
