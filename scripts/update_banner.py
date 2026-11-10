@@ -68,10 +68,10 @@ def banner_at(instant: datetime) -> str:
     if instant.utcoffset() is None:
         raise ValueError("timestamp must include a timezone offset or Z")
     hour = instant.astimezone(NEW_YORK).hour
-    if 6 <= hour < 12:
+    if 5 <= hour < 9:
         scene, description = "goldsmiths_morning", "Morning at Goldsmiths, London"
         greeting = "Good morning, welcome!"
-    elif 12 <= hour < 17:
+    elif 9 <= hour < 17:
         scene, description = "new_york_daytime", "Daytime in New York"
         greeting = "Good afternoon, welcome!"
     elif 17 <= hour < 21:
