@@ -4,9 +4,9 @@ This profile card links to <https://github.com/IoriOikawa/tutorial-multi-gpu>.
 It presents the user's SC26 multi-GPU experiments and study notes.
 
 - Title: **Exascale Programming**.
-- Eyebrow: **SC26 · HANDS-ON STUDY** (desktop only).
-- Description: **Hands-on experiments and study notes from JUPITER.**
-- Tags: **Nsight**, **MPI**, **NCCL/NVSHMEM**.
+- Eyebrow: **HPC · Distributed Multi GPU** (desktop only).
+- Description: **Developing, evaluating, optimization on JUPITER**.
+- Tags, in order: **MPI**, **NCCL/NVSHMEM**, **Nsight**.
 - Action: **View project →**.
 
 Desktop uses a 1200 × 400 canvas with the existing character, laptop and two
@@ -60,7 +60,7 @@ inspected. All four outer corner pixels are transparent in both exported PNGs.
   <picture>
     <source media="(max-width: 600px)" srcset="assets/projects/exascale-programming/banner-mobile.png">
     <img src="assets/projects/exascale-programming/banner-desktop.png"
-         alt="Exascale Programming: Hands-on experiments and study notes from JUPITER. Nsight, MPI, NCCL/NVSHMEM. View project."
+         alt="Exascale Programming: Developing, evaluating, optimization on JUPITER. MPI, NCCL/NVSHMEM, Nsight. View project."
          width="1200">
   </picture>
 </a>

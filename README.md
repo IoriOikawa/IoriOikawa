@@ -67,7 +67,7 @@
   <picture>
     <source media="(max-width: 600px)" srcset="assets/projects/exascale-programming/banner-mobile.png">
     <img src="assets/projects/exascale-programming/banner-desktop.png"
-         alt="Exascale Programming: Hands-on experiments and study notes from JUPITER. Nsight, MPI, NCCL/NVSHMEM. View project."
+         alt="Exascale Programming: Developing, evaluating, optimization on JUPITER. MPI, NCCL/NVSHMEM, Nsight. View project."
          width="1200">
   </picture>
 </a>
