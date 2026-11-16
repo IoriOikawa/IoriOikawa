@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exascale Programming — banner artwork</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: transparent; }
+    body { width: max-content; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; }
+    .banner {
+      position: relative; display: grid; align-items: center; overflow: hidden; isolation: isolate;
+      border-radius: 26px; color: #62718a;
+      background: linear-gradient(110deg, #fffdf8 0%, #fcf9f3 44%, #eef3fb 100%);
+    }
+    .banner::after { content: ""; position: absolute; inset: 0; border: 2px solid #ced7e7; border-radius: inherit; pointer-events: none; }
+    .banner::before { content: ""; position: absolute; z-index: -1; width: 360px; height: 360px; right: -150px; bottom: -245px; transform: rotate(45deg); border: 2px solid #cbd8ed; background: linear-gradient(135deg, #d9e9f8b0, #eee0c980); }
+    .desktop { width: 1200px; height: 400px; grid-template-columns: 370px minmax(0, 1fr); gap: 30px; padding: 24px 48px 24px 20px; }
+    .mobile { width: 750px; height: 450px; grid-template-columns: 300px minmax(0, 1fr); gap: 14px; padding: 24px 28px 24px 20px; }
+    .artwork { display: flex; align-items: center; justify-content: center; }
+    .artwork img { display: block; width: 370px; height: 352px; object-fit: contain; }
+    .mobile .artwork img { width: 320px; height: 390px; flex-shrink: 0; }
+    .copy { min-width: 0; position: relative; }
+    .eyebrow { margin: 0 0 12px; color: #7c859d; font-size: 20px; font-weight: 500; letter-spacing: 3px; }
+    h1 { margin: 0 0 16px; color: #3d4964; font: bold 60px/1.18 Georgia, "Times New Roman", serif; letter-spacing: -1px; white-space: nowrap; }
+    .description { margin: 0; font-size: 32px; font-weight: 500; line-height: 1.5; }
+    .location { white-space: nowrap; }
+    .footer { margin-top: 22px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .tags { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .tag { display: inline-block; padding: 6px 14px; border: 1.5px solid #c7d9ec; border-radius: 999px; color: #547b9e; background: #edf4fb; font-size: 24px; line-height: 1.3; white-space: nowrap; }
+    .mpi { color: #987446; border-color: #e5d5b9; background: #fcf3e5; }
+    .communication { color: #79709b; border-color: #d9d1e8; background: #f2eef8; }
+    .action { margin: 0; color: #957043; font-size: 28px; font-weight: 600; line-height: 1.3; white-space: nowrap; }
+    .action span { margin-left: 16px; }
+    .mobile .eyebrow { display: none; }
+    .mobile h1 { font-size: 44px; letter-spacing: -0.6px; margin-bottom: 14px; }
+    .mobile .title-word { display: block; }
+    .mobile .description { font-size: 32px; line-height: 1.45; }
+    .mobile .footer { flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 20px; }
+    .mobile .tag { font-size: 23px; padding: 6px 10px; }
+    .mobile .action { font-size: 30px; }
+    .banner[hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <section class="banner desktop" id="desktop" aria-label="Exascale Programming desktop banner">
+    <div class="artwork"><img src="../../../asset_input/exascale-programming-desktop-illustration.png" alt="An illustrated student with a laptop beside two miniature JUPITER supercomputer cabinets"></div>
+    <div class="copy">
+      <p class="eyebrow">SC26 · HANDS-ON STUDY</p>
+      <h1><span class="title-word">Exascale</span> <span class="title-word">Programming</span></h1>
+      <p class="description">Hands-on experiments and study notes <span class="location">from JUPITER.</span></p>
+      <div class="footer"><div class="tags"><span class="tag">Nsight</span><span class="tag mpi">MPI</span><span class="tag communication">NCCL/NVSHMEM</span></div><p class="action">View project<span>→</span></p></div>
+    </div>
+  </section>
+  <section class="banner mobile" id="mobile" aria-label="Exascale Programming mobile banner">
+    <div class="artwork"><img src="../../../asset_input/exascale-programming-mobile-illustration.png" alt="The same illustrated student and laptop beside one miniature JUPITER cabinet"></div>
+    <div class="copy">
+      <h1><span class="title-word">Exascale</span> <span class="title-word">Programming</span></h1>
+      <p class="description">Hands-on experiments and study notes <span class="location">from JUPITER.</span></p>
+      <div class="footer"><div class="tags"><span class="tag">Nsight</span><span class="tag mpi">MPI</span><span class="tag communication">NCCL/NVSHMEM</span></div><p class="action">View project<span>→</span></p></div>
+    </div>
+  </section>
+  <script>
+    const selected = new URLSearchParams(location.search).get('layout');
+    if (selected === 'desktop' || selected === 'mobile') {
+      document.querySelectorAll('.banner').forEach(banner => { banner.hidden = banner.id !== selected; });
+    }
+  </script>
+</body>
+</html>
